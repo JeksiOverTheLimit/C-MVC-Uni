@@ -1,0 +1,13 @@
+﻿@model BlogPostModel
+
+<form asp-controller="BlogPost" asp-action="Create" method="post">
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input class="form-control" id="title" asp-for="@Model.Title">
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" asp-for="@Model.Description"></textarea>
+    </div>
+    <button type="submit" class="btn btn-dark">Submit</button>
+</form>

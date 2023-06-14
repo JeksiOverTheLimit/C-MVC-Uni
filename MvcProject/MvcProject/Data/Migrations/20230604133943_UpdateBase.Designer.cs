@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MvcProject.Data;
 
@@ -10,14 +11,31 @@ using MvcProject.Data;
 namespace MvcProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230604133943_UpdateBase")]
+    partial class UpdateBase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("BlogPostTag", b =>
+                {
+                    b.Property<int>("BlogPostBlogId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagsTagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BlogPostBlogId", "TagsTagId");
+
+                    b.HasIndex("TagsTagId");
+
+                    b.ToTable("BlogPostTag");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -240,7 +258,7 @@ namespace MvcProject.Data.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("MvcProject.Data.Entities.BlogPostCategories", b =>
+            modelBuilder.Entity("MvcProject.Data.Entities.BlogPostCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -258,28 +276,7 @@ namespace MvcProject.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("BlogPostCategories");
-                });
-
-            modelBuilder.Entity("MvcProject.Data.Entities.BlogPostTags", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("BlogPostId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogPostId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("BlogPostTags");
+                    b.ToTable("BlogPostCategory");
                 });
 
             modelBuilder.Entity("MvcProject.Data.Entities.Category", b =>
@@ -336,6 +333,21 @@ namespace MvcProject.Data.Migrations
                     b.HasKey("TagId");
 
                     b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("BlogPostTag", b =>
+                {
+                    b.HasOne("MvcProject.Data.Entities.BlogPost", null)
+                        .WithMany()
+                        .HasForeignKey("BlogPostBlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MvcProject.Data.Entities.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsTagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -400,7 +412,7 @@ namespace MvcProject.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MvcProject.Data.Entities.BlogPostCategories", b =>
+            modelBuilder.Entity("MvcProject.Data.Entities.BlogPostCategory", b =>
                 {
                     b.HasOne("MvcProject.Data.Entities.BlogPost", "BlogPost")
                         .WithMany("BlogPostCategories")
@@ -409,7 +421,7 @@ namespace MvcProject.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("MvcProject.Data.Entities.Category", "Category")
-                        .WithMany("BlogPostCategories")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -417,25 +429,6 @@ namespace MvcProject.Data.Migrations
                     b.Navigation("BlogPost");
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("MvcProject.Data.Entities.BlogPostTags", b =>
-                {
-                    b.HasOne("MvcProject.Data.Entities.BlogPost", "BlogPost")
-                        .WithMany("BlogPostTags")
-                        .HasForeignKey("BlogPostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MvcProject.Data.Entities.Tag", "Tag")
-                        .WithMany("BlogPostTags")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BlogPost");
-
-                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("MvcProject.Data.Entities.Comments", b =>
@@ -461,19 +454,7 @@ namespace MvcProject.Data.Migrations
                 {
                     b.Navigation("BlogPostCategories");
 
-                    b.Navigation("BlogPostTags");
-
                     b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("MvcProject.Data.Entities.Category", b =>
-                {
-                    b.Navigation("BlogPostCategories");
-                });
-
-            modelBuilder.Entity("MvcProject.Data.Entities.Tag", b =>
-                {
-                    b.Navigation("BlogPostTags");
                 });
 #pragma warning restore 612, 618
         }

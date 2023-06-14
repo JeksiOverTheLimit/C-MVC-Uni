@@ -15,5 +15,7 @@ namespace MvcProject.Data
         public DbSet<Comments> Comments { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<BlogPostTags> BlogPostTags { get; set; }
+        public DbSet<BlogPostCategories> BlogPostCategories { get; set; }
     }
 }

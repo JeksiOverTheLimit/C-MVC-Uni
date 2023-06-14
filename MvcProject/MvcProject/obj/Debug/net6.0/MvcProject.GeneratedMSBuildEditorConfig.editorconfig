@@ -19,12 +19,16 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/BlogPost/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/BlogPost/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/Shared/Error.cshtml]

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MvcProject.Data;
 
@@ -10,9 +11,11 @@ using MvcProject.Data;
 namespace MvcProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230528151745_InitialUpdateBase")]
+    partial class InitialUpdateBase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -240,28 +243,7 @@ namespace MvcProject.Data.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("MvcProject.Data.Entities.BlogPostCategories", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("BlogPostId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogPostId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("BlogPostCategories");
-                });
-
-            modelBuilder.Entity("MvcProject.Data.Entities.BlogPostTags", b =>
+            modelBuilder.Entity("MvcProject.Data.Entities.BlogPostsTag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -279,7 +261,7 @@ namespace MvcProject.Data.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("BlogPostTags");
+                    b.ToTable("BlogPostsTag");
                 });
 
             modelBuilder.Entity("MvcProject.Data.Entities.Category", b =>
@@ -400,26 +382,7 @@ namespace MvcProject.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MvcProject.Data.Entities.BlogPostCategories", b =>
-                {
-                    b.HasOne("MvcProject.Data.Entities.BlogPost", "BlogPost")
-                        .WithMany("BlogPostCategories")
-                        .HasForeignKey("BlogPostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MvcProject.Data.Entities.Category", "Category")
-                        .WithMany("BlogPostCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BlogPost");
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("MvcProject.Data.Entities.BlogPostTags", b =>
+            modelBuilder.Entity("MvcProject.Data.Entities.BlogPostsTag", b =>
                 {
                     b.HasOne("MvcProject.Data.Entities.BlogPost", "BlogPost")
                         .WithMany("BlogPostTags")
@@ -459,16 +422,9 @@ namespace MvcProject.Data.Migrations
 
             modelBuilder.Entity("MvcProject.Data.Entities.BlogPost", b =>
                 {
-                    b.Navigation("BlogPostCategories");
-
                     b.Navigation("BlogPostTags");
 
                     b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("MvcProject.Data.Entities.Category", b =>
-                {
-                    b.Navigation("BlogPostCategories");
                 });
 
             modelBuilder.Entity("MvcProject.Data.Entities.Tag", b =>

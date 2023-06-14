@@ -1,32 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MvcProject.Models;
+using MvcProject.Services.BlogPosts;
 using System.Diagnostics;
 
 namespace MvcProject.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IBlogPostService _blogPostService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IBlogPostService blogPostService)
         {
-            _logger = logger;
+            _blogPostService = blogPostService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var allPost = this._blogPostService.FindAllPosts();
+            return View(allPost);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
