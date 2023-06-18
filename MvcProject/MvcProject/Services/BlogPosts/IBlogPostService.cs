@@ -12,5 +12,7 @@ namespace MvcProject.Services.BlogPosts
         void Update(BlogPostModel model);
 
         BlogPostModel FindByUserId(string id);
+
+        void Delete(int id);
     }
 }

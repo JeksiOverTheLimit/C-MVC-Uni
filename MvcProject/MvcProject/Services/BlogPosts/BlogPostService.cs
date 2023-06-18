@@ -75,7 +75,6 @@ namespace MvcProject.Services.BlogPosts
                 Id = x.BlogId,
                 Title = x.Title,
                 Description = x.Description,
-                AuthorName = x.User.UserName
             }).ToList();
             return allPosts;
         }
@@ -120,6 +119,19 @@ namespace MvcProject.Services.BlogPosts
             }
 
             return blogPost;
+        }
+
+        public void Delete(int id)
+        {
+            var post = _context.Posts.FirstOrDefault(x => x.BlogId == id);
+
+            if (post == null)
+            {
+                throw new Exception("Post Not Found");
+            }
+
+            _context.Posts.Remove(post);
+            _context.SaveChanges();
         }
 
     }

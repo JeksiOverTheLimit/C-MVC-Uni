@@ -22,7 +22,7 @@ namespace MvcProject.Controllers
 
         public IActionResult Index(int id)
         {
-            var post =  this._blogPostService.FindById(id);
+            var post = this._blogPostService.FindById(id);
             return View(post);
         }
 
@@ -46,7 +46,7 @@ namespace MvcProject.Controllers
         public IActionResult Read(BlogPostModel model)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-             
+
             var allPost = this._blogPostService.FindAllPostsByUserId(model, userId);
             return View(allPost);
         }
@@ -60,7 +60,17 @@ namespace MvcProject.Controllers
         }
 
         [HttpPost]
-        
+        public IActionResult Update(BlogPostModel model)
+        {
+            this._blogPostService.Update(model);
+            return Redirect("/BlogPost/Read");
+        }
 
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            this._blogPostService.Delete(id);
+            return RedirectToAction("Read");
+        }
     }
 }

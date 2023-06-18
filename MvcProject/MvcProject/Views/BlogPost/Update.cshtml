@@ -2,6 +2,7 @@
 
 <form method="post" action="/BlogPost/Update">
     <div class="form-group">
+        <input type="hidden" name="id" value="@Model.Id" />
         <label for="title">Title</label>
         <input type="text" class="form-control" id="title" name="title" value="@Model.Title" />
     </div>
@@ -9,9 +10,5 @@
         <label for="description">Description</label>
         <textarea class="form-control" id="description" name="description">@Model.Description</textarea>
     </div>
-    <div class="form-group">
-        <label for="authorName">Author Name</label>
-        <input type="text" class="form-control" id="authorName" name="authorName" value="@Model.AuthorName" />
-    </div>
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-dark">Update</button>
 </form>
