@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using MvcProject.Models;
 using MvcProject.Services.BlogPosts;
 using System.Security.Claims;
@@ -40,5 +41,26 @@ namespace MvcProject.Controllers
 
             return Redirect("/");
         }
+
+        [Authorize]
+        public IActionResult Read(BlogPostModel model)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+             
+            var allPost = this._blogPostService.FindAllPostsByUserId(model, userId);
+            return View(allPost);
+        }
+
+        [HttpGet]
+        public IActionResult Update()
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            BlogPostModel post = this._blogPostService.FindByUserId(userId);
+            return View(post);
+        }
+
+        [HttpPost]
+        
+
     }
 }

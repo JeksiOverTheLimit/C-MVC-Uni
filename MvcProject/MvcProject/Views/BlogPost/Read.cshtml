@@ -1,0 +1,17 @@
+﻿@model List<BlogPostModel>
+
+
+
+@foreach (var post in Model)
+{
+    <div class="container" >
+    <div class="mb-3">
+    <h2>@post.Title</h2>
+    <p>@post.Description</p>
+    <p>Author: @post.AuthorName</p>
+    <a class="btn btn-dark" href="/blogpost/update/@post.Id">Update Blog</a>
+    <a class="btn btn-dark" href="/blogpost/update/@post.Id">Delete Blog</a>
+
+    </div>
+    </div>
+}

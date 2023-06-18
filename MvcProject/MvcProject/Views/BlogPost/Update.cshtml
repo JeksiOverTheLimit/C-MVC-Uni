@@ -1,0 +1,17 @@
+﻿@model BlogPostModel
+
+<form method="post" action="/BlogPost/Update">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="title" value="@Model.Title" />
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description">@Model.Description</textarea>
+    </div>
+    <div class="form-group">
+        <label for="authorName">Author Name</label>
+        <input type="text" class="form-control" id="authorName" name="authorName" value="@Model.AuthorName" />
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
