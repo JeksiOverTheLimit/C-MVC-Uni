@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration.UserSecrets;
 using MvcProject.Models;
 using MvcProject.Services.BlogPosts;
+using MvcProject.Services.Category;
 using System.Security.Claims;
 
 namespace MvcProject.Controllers
@@ -13,11 +14,14 @@ namespace MvcProject.Controllers
     {
         private readonly IBlogPostService _blogPostService;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ICategoryService _categoryService;
 
-        public BlogPostController(IBlogPostService blogPostService, UserManager<IdentityUser> userManager)
+        public BlogPostController(IBlogPostService blogPostService, UserManager<IdentityUser> userManager, ICategoryService categoryService)
         {
             _blogPostService = blogPostService;
             _userManager = userManager;
+            _categoryService = categoryService;
+            
         }
 
         public IActionResult Index(int id)
@@ -29,12 +33,22 @@ namespace MvcProject.Controllers
         [Authorize]
         public IActionResult Create()
         {
-            return View();
+            var model = new BlogCategoryViewModel()
+            {
+                AllCategories = this._categoryService.GetAllCategory(),
+                CategoryIds = new List<int>()
+            };
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Create(BlogPostModel model)
+        public IActionResult Create(BlogCategoryViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Create");
+            }
+
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             this._blogPostService.Create(model, userId);

@@ -6,7 +6,7 @@ namespace MvcProject.Services.BlogPosts
     {
         BlogPostModel FindById(int id);
         List<BlogPostModel> FindAllPosts();
-        int Create(BlogPostModel model, string userId);
+        int Create(BlogCategoryViewModel model, string userId);
 
         List<BlogPostModel> FindAllPostsByUserId(BlogPostModel model, string userId);
         void Update(BlogPostModel model);

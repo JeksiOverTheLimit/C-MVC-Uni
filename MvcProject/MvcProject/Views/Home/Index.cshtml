@@ -10,5 +10,9 @@
 	<h1>@post.Title</h1>
 	<p>@post.Description</p>
 	<p>@post.AuthorName</p>
+@foreach(var item in post.CategoryNames)
+{
+	<span>| @item</span>
+}
 	</div>
 }

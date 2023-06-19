@@ -1,8 +1,11 @@
-﻿@model BlogPostModel
+﻿@model BlogCategoryViewModel
 
 
 <div class="bg-secondary">
 <h1>@Model.Title</h1>
 <h4>Author: @Model.AuthorName</h4>
 <p>@Model.Description</p>
+@foreach(var item in Model.AllCategories) {
+	<p>@item.Name</p>
+}
 </div>

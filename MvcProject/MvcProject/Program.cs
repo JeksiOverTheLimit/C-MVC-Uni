@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MvcProject.Data;
 using MvcProject.Services.BlogPosts;
+using MvcProject.Services.Category;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ builder.Services
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IBlogPostService, BlogPostService>();
+builder.Services.AddTransient<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 

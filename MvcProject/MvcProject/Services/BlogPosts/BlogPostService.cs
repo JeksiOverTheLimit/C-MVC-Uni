@@ -17,7 +17,7 @@ namespace MvcProject.Services.BlogPosts
             _context = context;
         }
 
-        public int Create(BlogPostModel model, string userId)
+        public int Create(BlogCategoryViewModel model, string userId)
         {
             if (string.IsNullOrEmpty(model.Title))
             {
@@ -30,6 +30,17 @@ namespace MvcProject.Services.BlogPosts
                 Description = model.Description,
                 UserId = userId
             };
+            foreach (var id in model.CategoryIds)
+            {
+                var category = this._context.Categories.Find(id);
+                if (category != null)
+                {
+                    post.BlogPostCategories.Add(new BlogPostCategories()
+                    {
+                        CategoryId = id
+                    }) ;
+                }
+            }
 
             this._context.Posts.Add(post);
             this._context.SaveChanges();
@@ -54,11 +65,13 @@ namespace MvcProject.Services.BlogPosts
 
         public List<BlogPostModel> FindAllPosts()
         {
-            var allPosts = this._context.Posts.Select(x => new BlogPostModel{
+            var allPosts = this._context.Posts.Select(x => new BlogPostModel
+            {
                 Id = x.BlogId,
                 Title = x.Title,
                 Description = x.Description,
-                AuthorName = x.User.UserName
+                AuthorName = x.User.UserName,
+                CategoryNames= x.BlogPostCategories.Select(z=> z.Category.CategoryName).ToList()
 
             }).ToList();
             return allPosts;
