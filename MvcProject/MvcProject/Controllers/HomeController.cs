@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MvcProject.Models;
 using MvcProject.Services.BlogPosts;
 using MvcProject.Services.Category;
+using System.Data;
 using System.Diagnostics;
 
 namespace MvcProject.Controllers
@@ -16,7 +18,7 @@ namespace MvcProject.Controllers
             _blogPostService = blogPostService;
             
         }
-
+     
         public IActionResult Index()
         {
             

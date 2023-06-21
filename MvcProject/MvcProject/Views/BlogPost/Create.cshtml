@@ -17,6 +17,15 @@
                 <option value="@category.Id">@category.Name</option>
             }
         </select>
-        </div>
+    </div>
+    <div class="mb-3">
+        <label for="tags" class="form-label"></label>
+        <select id="tags" asp-for="@Model.TagIds" multiple>
+            @foreach (var tag in Model.AllTags)
+            {
+                <option value="@tag.Id">@tag.Name</option>
+            }
+        </select>
+    </div>
     <button type="submit" class="btn btn-dark">Submit</button>
 </form>

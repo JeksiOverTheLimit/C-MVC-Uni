@@ -9,6 +9,10 @@ namespace MvcProject.Models
 
         [Required]
         public List<int> CategoryIds { get; set; }
-    
+
+        public List<TagModel> AllTags { get; set; }
+
+        public List<int> TagIds { get; set; }
+
     }
 }

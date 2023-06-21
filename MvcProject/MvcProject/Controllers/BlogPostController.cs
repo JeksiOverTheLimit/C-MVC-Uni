@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration.UserSecrets;
 using MvcProject.Models;
 using MvcProject.Services.BlogPosts;
 using MvcProject.Services.Category;
+using MvcProject.Services.NewFolder;
 using System.Security.Claims;
 
 namespace MvcProject.Controllers
@@ -15,13 +16,13 @@ namespace MvcProject.Controllers
         private readonly IBlogPostService _blogPostService;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ICategoryService _categoryService;
-
-        public BlogPostController(IBlogPostService blogPostService, UserManager<IdentityUser> userManager, ICategoryService categoryService)
+        private readonly ITagService _tagService;
+        public BlogPostController(IBlogPostService blogPostService, UserManager<IdentityUser> userManager, ICategoryService categoryService, ITagService tagservice)
         {
             _blogPostService = blogPostService;
             _userManager = userManager;
             _categoryService = categoryService;
-            
+            _tagService = tagservice;
         }
 
         public IActionResult Index(int id)
@@ -36,7 +37,9 @@ namespace MvcProject.Controllers
             var model = new BlogCategoryViewModel()
             {
                 AllCategories = this._categoryService.GetAllCategory(),
-                CategoryIds = new List<int>()
+                CategoryIds = new List<int>(),
+                AllTags = this._tagService.GetAllTag(),
+                TagIds = new List<int>()
             };
             return View(model);
         }
@@ -44,10 +47,7 @@ namespace MvcProject.Controllers
         [HttpPost]
         public IActionResult Create(BlogCategoryViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return RedirectToAction("Create");
-            }
+            
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 

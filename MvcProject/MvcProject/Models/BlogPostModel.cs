@@ -7,5 +7,8 @@
         public string Description { get; set; }
         public string AuthorName { get; set; }
         public List<string> CategoryNames { get; set; }
+
+        public List<string> TagName { get; set; }
+
     }
 }

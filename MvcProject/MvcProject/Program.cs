@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcProject.Data;
 using MvcProject.Services.BlogPosts;
 using MvcProject.Services.Category;
+using MvcProject.Services.NewFolder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,12 +24,13 @@ builder.Services
         options.Password.RequiredLength = 2;
         options.Password.RequireNonAlphanumeric = false;
         options.Password.RequireUppercase = false;
-    }) 
+    })
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IBlogPostService, BlogPostService>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
+builder.Services.AddTransient<ITagService, TagService>();
 
 var app = builder.Build();
 

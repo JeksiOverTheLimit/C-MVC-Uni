@@ -1,18 +1,23 @@
 ﻿@model List<BlogPostModel>
 
 <div class="mb-2">
-<a class="btn btn-dark" href="/blogpost/create">Create Blog</a>
+	<a class="btn btn-dark" href="/blogpost/create">Create Blog</a>
 </div>
 
-@foreach(var post in Model)
+@foreach (var post in Model)
 {
 	<div class="bg-secondary">
-	<h1>@post.Title</h1>
-	<p>@post.Description</p>
-	<p>@post.AuthorName</p>
-@foreach(var item in post.CategoryNames)
-{
-	<span>| @item</span>
-}
+		<h1>@post.Title</h1>
+		<p>@post.Description</p>
+		<p>@post.AuthorName</p>
+		@foreach (var item in post.CategoryNames)
+		{
+			<span>Category | @item</span>
+		}
+		<br>
+		@foreach (var items in post.TagName)
+		{
+			<span>Tags| @items</span>
+		}
 	</div>
 }

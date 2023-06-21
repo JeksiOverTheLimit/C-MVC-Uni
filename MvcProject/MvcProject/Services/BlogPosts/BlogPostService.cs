@@ -38,7 +38,19 @@ namespace MvcProject.Services.BlogPosts
                     post.BlogPostCategories.Add(new BlogPostCategories()
                     {
                         CategoryId = id
-                    }) ;
+                    });
+                }
+            }
+
+            foreach (var id in model.TagIds)
+            {
+                var tag = this._context.Tags.Find(id);
+                if (tag != null)
+                {
+                    post.BlogPostTags.Add(new BlogPostTags()
+                    {
+                        TagId = id
+                    });
                 }
             }
 
@@ -71,7 +83,8 @@ namespace MvcProject.Services.BlogPosts
                 Title = x.Title,
                 Description = x.Description,
                 AuthorName = x.User.UserName,
-                CategoryNames= x.BlogPostCategories.Select(z=> z.Category.CategoryName).ToList()
+                CategoryNames = x.BlogPostCategories.Select(z => z.Category.CategoryName).ToList(),
+                TagName = x.BlogPostTags.Select(y=> y.Tag.TagName).ToList()
 
             }).ToList();
             return allPosts;

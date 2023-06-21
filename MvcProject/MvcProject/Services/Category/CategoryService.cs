@@ -38,6 +38,6 @@ namespace MvcProject.Services.Category
                 Name = x.CategoryName,
                 Id = x.CategoryId
             }).ToList();
-        }  
+        }
     }
 }
