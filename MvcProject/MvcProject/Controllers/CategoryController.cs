@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MvcProject.Data.Entities;
 using MvcProject.Models;
 using MvcProject.Services.Category;
@@ -15,17 +16,21 @@ namespace MvcProject.Controllers
         {
             _categoryService = categoryService;
         }
+
+        [Authorize]
         public IActionResult Index()
         {
             var allCategories = this._categoryService.GetAllCategory();
             return View(allCategories);
         }
 
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Create(CategoryModel model)
         {
@@ -33,6 +38,7 @@ namespace MvcProject.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Update(int id)
         {
@@ -46,6 +52,7 @@ namespace MvcProject.Controllers
             return View(category);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Update(CategoryModel model)
         {
@@ -54,6 +61,8 @@ namespace MvcProject.Controllers
                return RedirectToAction("Index");
             
         }
+
+        [Authorize]
         [HttpPost]
         public IActionResult Delete(int id)
         {

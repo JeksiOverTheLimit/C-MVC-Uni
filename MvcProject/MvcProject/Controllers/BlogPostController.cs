@@ -65,6 +65,7 @@ namespace MvcProject.Controllers
             return View(allPost);
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Update()
         {
@@ -73,6 +74,7 @@ namespace MvcProject.Controllers
             return View(post);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Update(BlogPostModel model)
         {
@@ -80,6 +82,7 @@ namespace MvcProject.Controllers
             return Redirect("/BlogPost/Read");
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Delete(int id)
         {

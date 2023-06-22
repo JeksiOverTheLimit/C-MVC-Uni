@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MvcProject.Models;
 using MvcProject.Services.Category;
 using MvcProject.Services.NewFolder;
@@ -13,17 +14,21 @@ namespace MvcProject.Controllers
         {
             _tagService = tagService;
         }
+
+        [Authorize]
         public IActionResult Index()
         {
             var allTags = this._tagService.GetAllTag();
             return View(allTags);
         }
 
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Create(TagModel model)
         {
@@ -31,6 +36,7 @@ namespace MvcProject.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Update(int id)
         {
@@ -44,6 +50,7 @@ namespace MvcProject.Controllers
             return View(tag);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Update(TagModel model)
         {
@@ -52,6 +59,7 @@ namespace MvcProject.Controllers
             return RedirectToAction("Index");
 
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Delete(int id)
         {
