@@ -1,0 +1,11 @@
+﻿@model TagModel
+
+
+<form method="post" action="/tag/update">
+    <div class="form-group">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <label for="name">Name</label>
+        <input type="name" class="form-control" id="name" name="name" value="@Model.Name" />
+    </div>
+    <button type="submit" class="btn btn-dark">Update</button>
+</form>

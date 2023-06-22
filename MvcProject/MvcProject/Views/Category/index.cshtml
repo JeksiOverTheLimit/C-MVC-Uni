@@ -1,0 +1,33 @@
+﻿@model List<CategoryModel>
+<div class="mb-2">
+    <a class="btn btn-dark" href="/Category/create">Create Category</a>
+</div>
+@foreach(var category in Model)
+{
+	<div class="container">
+            <div class="mb-3">
+                <h2>@category.Name</h2>
+                <a class="btn btn-dark" href="/category/update/@category.Id">Update category</a>
+                <button class="btn btn-dark" onclick="deleteBlog(@category.Id)">Delete category</button>
+            </div>
+        </div>
+}
+<script>
+    function deleteBlog(id) {
+        if (confirm('Сигурни ли сте, че искате да изтриете този пост?')) {
+            fetch('/category/delete/' + id, {
+                method: 'POST'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/Category/index';
+                    } else {
+                        console.error('Грешка при изтриване на блогов пост.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Грешка при изтриване на блогов пост:', error);
+                });
+        }
+    }
+</script>

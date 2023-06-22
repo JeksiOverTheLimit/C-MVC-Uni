@@ -38,6 +38,44 @@ namespace MvcProject.Services.NewFolder
                     Id = x.TagId
                 }).ToList();
             }
+        public void Update(TagModel model)
+        {
+            var post = this._context.Tags.FirstOrDefault(x => x.TagId == model.Id);
+
+            if (post == null)
+            {
+                throw new Exception("Post Not Found");
+            }
+
+            post.TagName = model.Name;
+
+
+            this._context.SaveChanges();
         }
+
+        public TagModel GetTagById(int id)
+        {
+            var tag = _context.Tags.FirstOrDefault(x => x.TagId == id);
+
+
+            var model = new TagModel
+            {
+                Id = tag.TagId,
+                Name = tag.TagName
+            };
+
+            return model;
+        }
+
+        public void Delete(int id)
+        {
+            var post = _context.Tags.FirstOrDefault(x => x.TagId == id);
+
+
+            _context.Tags.Remove(post);
+            _context.SaveChanges();
+
+        }
+    }
     }
 

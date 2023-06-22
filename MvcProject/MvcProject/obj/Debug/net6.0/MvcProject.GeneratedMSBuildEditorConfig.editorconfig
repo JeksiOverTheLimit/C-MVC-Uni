@@ -35,6 +35,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/Category/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/Category/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcaW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/Category/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -49,6 +61,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/Tag/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/Tag/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnXGluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/Tag/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnXFVwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/valio/OneDrive/Работен плот/programirane/ASPproject/Project/MvcProject/MvcProject/Views/_ViewImports.cshtml]

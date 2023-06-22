@@ -1,0 +1,34 @@
+﻿@model List<TagModel>
+
+<div class="mb-2">
+    <a class="btn btn-dark" href="/tag/create">Create Tag</a>
+</div>
+@foreach(var tag in Model)
+{
+	<div class="container">
+            <div class="mb-3">
+                <h2>@tag.Name</h2>
+                <a class="btn btn-dark" href="/tag/update/@tag.Id">Update tag</a>
+                <button class="btn btn-dark" onclick="deleteBlog(@tag.Id)">Delete tag</button>
+            </div>
+        </div>
+}
+<script>
+    function deleteBlog(id) {
+        if (confirm('Сигурни ли сте, че искате да изтриете този пост?')) {
+            fetch('/tag/delete/' + id, {
+                method: 'POST'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/tag/index';
+                    } else {
+                        console.error('Грешка при изтриване на блогов пост.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Грешка при изтриване на блогов пост:', error);
+                });
+        }
+    }
+</script>

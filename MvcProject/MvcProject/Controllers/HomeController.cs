@@ -21,7 +21,6 @@ namespace MvcProject.Controllers
      
         public IActionResult Index()
         {
-            
             var allPost = this._blogPostService.FindAllPosts();
             return View(allPost);
         }

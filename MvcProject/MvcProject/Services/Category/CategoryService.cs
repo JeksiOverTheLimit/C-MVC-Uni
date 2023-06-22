@@ -39,5 +39,48 @@ namespace MvcProject.Services.Category
                 Id = x.CategoryId
             }).ToList();
         }
+
+        public void Update(CategoryModel model)
+        {
+            var post = this._context.Categories.FirstOrDefault(x => x.CategoryId == model.Id);
+
+            if (post == null)
+            {
+                throw new Exception("Post Not Found");
+            }
+
+            post.CategoryName = model.Name;
+            
+
+            this._context.SaveChanges();
+        }
+
+        public CategoryModel GetCategoryById(int id)
+        {
+            var category = _context.Categories.FirstOrDefault(x => x.CategoryId == id);
+
+            if (category == null)
+            {
+                return null;
+            }
+
+            var model = new CategoryModel
+            {
+                Id = category.CategoryId,
+                Name = category.CategoryName
+            };
+
+            return model;
+        }
+
+        public void Delete(int id)
+        {
+            var post = _context.Categories.FirstOrDefault(x => x.CategoryId == id);
+
+
+            _context.Categories.Remove(post);
+            _context.SaveChanges();
+         
+        }
     }
 }

@@ -1,0 +1,10 @@
+﻿@model TagModel
+
+<form asp-controller="Tag" asp-action="Create" method="post">
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input class="form-control" id="title" asp-for="@Model.Name">
+    </div>
+    <button type="submit" class="btn btn-dark">Submit</button>
+</form>
+

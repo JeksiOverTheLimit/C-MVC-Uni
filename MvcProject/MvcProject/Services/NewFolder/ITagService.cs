@@ -6,5 +6,10 @@ namespace MvcProject.Services.NewFolder
     {
         int Create(TagModel model);
         List<TagModel> GetAllTag();
+
+        void Delete(int id);
+        TagModel GetTagById(int id);
+
+        void Update(TagModel model);
     }
 }
